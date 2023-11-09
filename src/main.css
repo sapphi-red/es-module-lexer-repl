@@ -1,0 +1,123 @@
+html, body {
+  margin: 0;
+  color: #e2e8f0;
+  background: #020617;
+}
+
+.root {
+  margin: 1rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.title {
+  margin: 0.5rem 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.version-selector {
+  display: flex;
+  align-items: center;
+}
+
+.version-selector-label {
+  margin-right: 0.25rem;
+}
+
+.version-selector-inner {
+  color: #e2e8f0;
+  background: #020617;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.panel {
+  display: flex;
+  color: #e2e8f0;
+  background: #0f172a;
+  overflow: auto;
+  border-radius: 0.5rem;
+}
+
+.input {
+  flex: 1;
+  color: inherit;
+  background: inherit;
+  border: none;
+  font-size: 0.9rem;
+  font-family: monospace;
+  resize: none;
+  min-height: 3rem;
+  padding: 0.75rem;
+}
+
+.result {
+  display: grid;
+  gap: 1rem;
+}
+
+.result-code {
+  white-space: pre-wrap;
+  font-size: 0.9rem;
+  font-family: monospace;
+  min-height: 3rem;
+  padding: 0.75rem;
+}
+
+.value-chunk[data-type~="import-module-specifier"] {
+  color: #7dd3fc;
+}
+.value-chunk[data-type~="import-statement"] {
+  background: #082f49;
+}
+.value-chunk[data-type~="import-assertion"] {
+  background: #4c1d95;
+}
+.value-chunk[data-type~="import-assertion"]::after {
+  content: ' ';
+}
+.value-chunk[data-type~="dynamic-import"] {
+  background: #4a044e;
+}
+.value-chunk[data-type~="dynamic-import"]::after {
+  content: ' ';
+}
+.value-chunk[data-type~="export-exported-name"] {
+  background: #022c22;
+}
+.value-chunk[data-type~="export-local-name"] {
+  color: #6ee7b7;
+}
+
+.value-chunk[data-hovered="true"] {
+  outline: solid 2px #94a3b8;
+}
+
+.tooltip {
+  position: absolute;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background: black;
+  overflow: auto;
+  word-break: break-all;
+  background: #1e293b;
+}
+.tooltip ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.result-error {
+  color: #fca5a5;
+}
