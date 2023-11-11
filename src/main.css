@@ -66,6 +66,14 @@ main {
   gap: 1rem;
 }
 
+.result-meta p {
+  margin: 0;
+}
+
+.result-meta-title {
+  font-weight: bold;
+}
+
 .result-code {
   white-space: pre-wrap;
   font-size: 0.9rem;
