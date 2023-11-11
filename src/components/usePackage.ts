@@ -8,7 +8,7 @@ export const usePackage = (version: string) => {
 
   useEffect(() => {
     const abort = new AbortController()
-    const url = `https://jspm.dev/es-module-lexer@${version}`
+    const url = `https://cdn.jsdelivr.net/npm/es-module-lexer@${version}/dist/lexer.js`
 
     ;(async () => {
       setEsModuleLexer(undefined)
