@@ -3,10 +3,7 @@ import { JSX } from 'preact'
 import { useEffect, useRef } from 'preact/hooks'
 
 export const TextArea = (
-  props: JSX.DetailedHTMLProps<
-    JSX.HTMLAttributes<HTMLTextAreaElement>,
-    HTMLTextAreaElement
-  >
+  props: JSX.InputHTMLAttributes<HTMLTextAreaElement>,
 ) => {
   const ref = useRef<HTMLTextAreaElement>(null)
   useEffect(() => {
