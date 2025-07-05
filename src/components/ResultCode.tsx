@@ -3,10 +3,16 @@ import { useCallback, useMemo, useState } from 'preact/hooks'
 import { ParseResult } from '../types'
 import { createPortal } from 'preact/compat'
 import { isVersionLower } from './parseVersion'
+import { ImportType } from 'es-module-lexer'
 
+type ImportPhaseKind = '' | '-defer' | '-source'
+type ImportTypeKind =
+  | `static${ImportPhaseKind}`
+  | `dynamic${ImportPhaseKind}`
+  | 'meta'
 type RecordMeta =
   | { type: 'import-module-specifier'; value: string | undefined }
-  | { type: 'import-statement'; importType: 'static' | 'dynamic' | 'meta' }
+  | { type: 'import-statement'; importType: ImportTypeKind }
   | { type: 'import-assertion' }
   | { type: 'dynamic-import' }
   | { type: 'export-exported-name'; value: string | undefined }
@@ -65,7 +71,31 @@ export const ResultCode = ({
       }
     }
 
-    const getImportType = (d: number) => {
+    const getImportType = (
+      // t does not exist in old versions
+      t: ImportType | undefined,
+      d: number,
+    ): ImportTypeKind => {
+      if (t !== undefined) {
+        switch (t) {
+          case ImportType.Static:
+            return 'static'
+          case ImportType.StaticDeferPhase:
+            return 'static-defer'
+          case ImportType.StaticSourcePhase:
+            return 'static-source'
+          case ImportType.Dynamic:
+            return 'dynamic'
+          case ImportType.DynamicDeferPhase:
+            return 'dynamic-defer'
+          case ImportType.DynamicSourcePhase:
+            return 'dynamic-source'
+          case ImportType.ImportMeta:
+            return 'meta'
+          default:
+            t satisfies never
+        }
+      }
       if (d === -2) return 'meta'
       if (d === -1) return 'static'
       if (d >= 0) return 'dynamic'
@@ -79,7 +109,7 @@ export const ResultCode = ({
       })
       addRecord(imp.ss, imp.se, {
         type: 'import-statement',
-        importType: getImportType(imp.d)
+        importType: getImportType(imp.t, imp.d)
       })
       if (imp.a >= 0) {
         addRecord(imp.a, imp.a, { type: 'import-assertion' })
