@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'preact/hooks'
 
-const listeners: Array<() => void> = []
+const listeners: (() => void)[] = []
 
 const useQueryParams = () => {
   const [ourSearch, setOurSearch] = useState(location.search)
