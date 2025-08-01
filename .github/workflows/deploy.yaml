@@ -24,9 +24,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: 'npm'
-      - run: npm install
-      - run: npm run build
+          cache: pnpm
+      - run: pnpm i --frozen-lockfile
+      - run: pnpm run build
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
