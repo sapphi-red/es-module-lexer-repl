@@ -14,16 +14,16 @@
     "preact": "^10.27.2"
   },
   "devDependencies": {
-    "@eslint/js": "^9.36.0",
+    "@eslint/js": "^9.39.0",
     "@preact/preset-vite": "^2.10.2",
     "@types/autosize": "^4.0.3",
     "es-module-lexer": "^1.7.0",
-    "eslint": "^9.36.0",
+    "eslint": "^9.39.0",
     "eslint-plugin-react-hooks": "^5.2.0",
-    "globals": "^16.4.0",
+    "globals": "^16.5.0",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.45.0",
-    "vite": "^7.1.7"
+    "typescript-eslint": "^8.46.2",
+    "vite": "^7.1.12"
   },
-  "packageManager": "pnpm@10.17.1"
+  "packageManager": "pnpm@10.20.0"
 }
