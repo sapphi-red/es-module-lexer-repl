@@ -19,7 +19,7 @@
     "@types/autosize": "^4.0.3",
     "es-module-lexer": "^1.7.0",
     "eslint": "^9.39.2",
-    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-hooks": "^7.0.1",
     "globals": "^16.5.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.54.0",
