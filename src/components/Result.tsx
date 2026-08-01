@@ -3,13 +3,7 @@ import { ResultCode } from './ResultCode'
 import { usePackage } from './usePackage'
 import { isVersionLower } from './parseVersion'
 
-export const Result = ({
-  version,
-  input
-}: {
-  version: string
-  input: string
-}) => {
+export const Result = ({ version, input }: { version: string; input: string }) => {
   const esModuleLexer = usePackage(version)
 
   const result = useMemo(() => {
@@ -34,26 +28,18 @@ export const Result = ({
         <>
           <div class="result-meta">
             <p>
-              <span class="result-meta-title">facade</span>:{' '}
-              {JSON.stringify(result.value[2])}
+              <span class="result-meta-title">facade</span>: {JSON.stringify(result.value[2])}
             </p>
             <p>
-              <span class="result-meta-title">hasModuleSyntax</span>:{' '}
-              {hasModuleSyntax}
+              <span class="result-meta-title">hasModuleSyntax</span>: {hasModuleSyntax}
             </p>
           </div>
           <div class="panel">
-            <ResultCode
-              source={input}
-              result={result.value}
-              version={version}
-            />
+            <ResultCode source={input} result={result.value} version={version} />
           </div>
         </>
       ) : null}
-      {result.type === 'error' ? (
-        <div class="result-error">{String(result.value)}</div>
-      ) : null}
+      {result.type === 'error' ? <div class="result-error">{String(result.value)}</div> : null}
     </div>
   )
 }

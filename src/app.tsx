@@ -15,7 +15,7 @@ export function App() {
       const value = e.currentTarget.value
       setInput(value === '' ? null : value)
     },
-    [setInput]
+    [setInput],
   )
 
   return (
@@ -28,9 +28,7 @@ export function App() {
         <div class="panel">
           <TextArea class="input" value={input} onInput={onInput} />
         </div>
-        {version !== undefined ? (
-          <Result version={version} input={input} />
-        ) : undefined}
+        {version !== undefined ? <Result version={version} input={input} /> : undefined}
       </main>
     </div>
   )

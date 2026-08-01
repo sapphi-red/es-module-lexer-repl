@@ -8,17 +8,12 @@ export const useVersionList = () => {
     const abort = new AbortController()
     void (async () => {
       try {
-        const res = await fetch(
-          'https://data.jsdelivr.com/v1/package/npm/es-module-lexer',
-          {
-            signal: abort.signal
-          }
-        )
+        const res = await fetch('https://data.jsdelivr.com/v1/package/npm/es-module-lexer', {
+          signal: abort.signal,
+        })
         // oxlint-disable-next-line typescript/no-unsafe-type-assertion
         const data = (await res.json()) as { versions: string[] }
-        setVersions(
-          data.versions.filter((version) => !isVersionLower(version, '0.5.0'))
-        )
+        setVersions(data.versions.filter((version) => !isVersionLower(version, '0.5.0')))
       } catch {
         /* ignore error */
       }

@@ -1,13 +1,14 @@
 {
   "name": "es-module-lexer-repl",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint": "oxlint"
+    "lint": "oxlint",
+    "format": "oxfmt"
   },
   "dependencies": {
     "autosize": "^6.0.1",
@@ -17,6 +18,7 @@
     "@preact/preset-vite": "^2.10.6",
     "@types/autosize": "^4.0.3",
     "es-module-lexer": "^2.3.1",
+    "oxfmt": "^0.61.0",
     "oxlint": "^1.76.0",
     "oxlint-tsgolint": "^7.0.2001",
     "typescript": "^7.0.2",

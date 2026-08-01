@@ -6,10 +6,7 @@ import { isVersionLower } from './parseVersion'
 import { ImportType } from 'es-module-lexer'
 
 type ImportPhaseKind = '' | '-defer' | '-source'
-type ImportTypeKind =
-  | `static${ImportPhaseKind}`
-  | `dynamic${ImportPhaseKind}`
-  | 'meta'
+type ImportTypeKind = `static${ImportPhaseKind}` | `dynamic${ImportPhaseKind}` | 'meta'
 type RecordMeta =
   | { type: 'import-module-specifier'; value: string | undefined }
   | { type: 'import-statement'; importType: ImportTypeKind }
@@ -27,7 +24,7 @@ type Record = {
 export const ResultCode = ({
   source,
   version,
-  result
+  result,
 }: {
   source: string
   version: string
@@ -39,10 +36,10 @@ export const ResultCode = ({
       start: number,
       end: number,
       value: RecordMeta,
-      targetRecords: Record[] = records
+      targetRecords: Record[] = records,
     ) => {
       const targetRecord = targetRecords.find(
-        (record) => record.start <= start && end <= record.end
+        (record) => record.start <= start && end <= record.end,
       )
       if (targetRecord) {
         if (targetRecord.start === start && targetRecord.end === end) {
@@ -105,11 +102,11 @@ export const ResultCode = ({
     for (const imp of result[0]) {
       addRecord(imp.s, imp.e, {
         type: 'import-module-specifier',
-        value: imp.n
+        value: imp.n,
       })
       addRecord(imp.ss, imp.se, {
         type: 'import-statement',
-        importType: getImportType(imp.t, imp.d)
+        importType: getImportType(imp.t, imp.d),
       })
       if (imp.a >= 0) {
         addRecord(imp.a, imp.a, { type: 'import-assertion' })
@@ -132,17 +129,13 @@ export const ResultCode = ({
       records
         .map((record) => ({
           ...record,
-          children: getSortedRecords(record.children)
+          children: getSortedRecords(record.children),
         }))
         .sort((a, b) => a.start - b.start)
 
     const sortedRecords = getSortedRecords(records)
 
-    const getChunks = (
-      records: Record[],
-      start: number,
-      end: number
-    ): ComponentChild[] => {
+    const getChunks = (records: Record[], start: number, end: number): ComponentChild[] => {
       if (records.length === 0) {
         return [source.slice(start, end)]
       }
@@ -154,7 +147,7 @@ export const ResultCode = ({
         chunks.push(
           <ResultCodeValueChunk value={value}>
             {getChunks(children, start, end)}
-          </ResultCodeValueChunk>
+          </ResultCodeValueChunk>,
         )
         lastPos = end
       }
@@ -176,7 +169,7 @@ type Position = {
 
 const ResultCodeValueChunk = ({
   children,
-  value
+  value,
 }: {
   children: ComponentChildren
   value: RecordMeta[]
@@ -189,7 +182,7 @@ const ResultCodeValueChunk = ({
         top: window.scrollY + rect.top,
         bottom: window.scrollY + rect.bottom,
         left: window.scrollX + rect.left,
-        right: window.scrollX + rect.right
+        right: window.scrollX + rect.right,
       })
     }
   }, [])
@@ -206,16 +199,14 @@ const ResultCodeValueChunk = ({
       onMouseOut={onMouseOut}
     >
       {children}
-      {hoveredPosition ? (
-        <ResultCodeValueTooltip position={hoveredPosition} value={value} />
-      ) : null}
+      {hoveredPosition ? <ResultCodeValueTooltip position={hoveredPosition} value={value} /> : null}
     </span>
   )
 }
 
 const ResultCodeValueTooltip = ({
   position,
-  value
+  value,
 }: {
   position: Position
   value: RecordMeta[]
@@ -231,7 +222,7 @@ const ResultCodeValueTooltip = ({
       : { right: window.innerWidth - position.right }),
     ...(position.top + size.height + margin < window.innerHeight
       ? { top: position.bottom }
-      : { bottom: window.innerHeight - position.top })
+      : { bottom: window.innerHeight - position.top }),
   }
 
   return createPortal(
@@ -243,28 +234,20 @@ const ResultCodeValueTooltip = ({
             case 'import-statement':
               return <li key={i}>Import Statement (type: {v.importType})</li>
             case 'import-module-specifier':
-              return (
-                <li key={i}>
-                  Import Module Specifier: {JSON.stringify(v.value)}
-                </li>
-              )
+              return <li key={i}>Import Module Specifier: {JSON.stringify(v.value)}</li>
             case 'dynamic-import':
               return <li key={i}>Dynamic Import Start Position</li>
             case 'import-assertion':
               return <li key={i}>Import Assertion Start Position</li>
             case 'export-exported-name':
-              return (
-                <li key={i}>Export Exported Name: {JSON.stringify(v.value)}</li>
-              )
+              return <li key={i}>Export Exported Name: {JSON.stringify(v.value)}</li>
             case 'export-local-name':
-              return (
-                <li key={i}>Export Local Name: {JSON.stringify(v.value)}</li>
-              )
+              return <li key={i}>Export Local Name: {JSON.stringify(v.value)}</li>
           }
           throw new Error(`Invalid type: ${String(type satisfies never)}`)
         })}
       </ul>
     </div>,
-    document.getElementById('tooltips')!
+    document.getElementById('tooltips')!,
   )
 }

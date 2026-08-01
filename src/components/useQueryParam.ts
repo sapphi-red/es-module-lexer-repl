@@ -30,25 +30,25 @@ const useQueryParams = () => {
   return [ourSearch, setBrowserSearch] as const
 }
 
-export const useQueryParam = <T extends string | undefined>(
-  key: string,
-  defaultValue: T
-) => {
+export const useQueryParam = <T extends string | undefined>(key: string, defaultValue: T) => {
   const [q, setQ] = useQueryParams()
 
   const singleValue = useMemo(
     () => new URLSearchParams(q).get(key) ?? defaultValue,
-    [q, key, defaultValue]
+    [q, key, defaultValue],
   )
-  const setSingleValue = useCallback((value: string | null) => {
-    const params = new URLSearchParams(q)
-    if (value === null) {
-      params.delete(key)
-    } else {
-      params.set(key, value)
-    }
-    setQ(params.toString())
-  }, [q, setQ, key])
+  const setSingleValue = useCallback(
+    (value: string | null) => {
+      const params = new URLSearchParams(q)
+      if (value === null) {
+        params.delete(key)
+      } else {
+        params.set(key, value)
+      }
+      setQ(params.toString())
+    },
+    [q, setQ, key],
+  )
 
   return [singleValue, setSingleValue] as const
 }

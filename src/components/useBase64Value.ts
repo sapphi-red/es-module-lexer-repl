@@ -2,7 +2,7 @@ import { useCallback, useMemo } from 'preact/hooks'
 
 export const useBase64Value = (
   [value, setValue]: readonly [string, (v: string | null) => void],
-  fallbackValue: string
+  fallbackValue: string,
 ) => {
   const parsedValue = useMemo(() => {
     try {
@@ -15,7 +15,7 @@ export const useBase64Value = (
     (v: string | null) => {
       setValue(v === null ? null : btoa(v))
     },
-    [setValue]
+    [setValue],
   )
   return [parsedValue, setParsedValue] as const
 }

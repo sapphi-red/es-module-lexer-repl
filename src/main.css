@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   margin: 0;
   color: #e2e8f0;
   background: #020617;
@@ -82,32 +83,32 @@ main {
   padding: 0.75rem;
 }
 
-.value-chunk[data-type~="import-module-specifier"] {
+.value-chunk[data-type~='import-module-specifier'] {
   color: #7dd3fc;
 }
-.value-chunk[data-type~="import-statement"] {
+.value-chunk[data-type~='import-statement'] {
   background: #082f49;
 }
-.value-chunk[data-type~="import-assertion"] {
+.value-chunk[data-type~='import-assertion'] {
   background: #4c1d95;
 }
-.value-chunk[data-type~="import-assertion"]::after {
+.value-chunk[data-type~='import-assertion']::after {
   content: ' ';
 }
-.value-chunk[data-type~="dynamic-import"] {
+.value-chunk[data-type~='dynamic-import'] {
   background: #4a044e;
 }
-.value-chunk[data-type~="dynamic-import"]::after {
+.value-chunk[data-type~='dynamic-import']::after {
   content: ' ';
 }
-.value-chunk[data-type~="export-exported-name"] {
+.value-chunk[data-type~='export-exported-name'] {
   background: #022c22;
 }
-.value-chunk[data-type~="export-local-name"] {
+.value-chunk[data-type~='export-local-name'] {
   color: #6ee7b7;
 }
 
-.value-chunk[data-hovered="true"] {
+.value-chunk[data-hovered='true'] {
   outline: solid 2px #94a3b8;
 }
 

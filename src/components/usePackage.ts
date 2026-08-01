@@ -2,9 +2,7 @@ import { useEffect, useState } from 'preact/hooks'
 import type * as EsModuleLexer from 'es-module-lexer'
 
 export const usePackage = (version: string) => {
-  const [esModuleLexer, setEsModuleLexer] = useState<
-    typeof EsModuleLexer | undefined
-  >()
+  const [esModuleLexer, setEsModuleLexer] = useState<typeof EsModuleLexer | undefined>()
 
   useEffect(() => {
     const abort = new AbortController()

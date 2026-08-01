@@ -4,7 +4,7 @@ import { useCallback, useEffect } from 'preact/hooks'
 
 export const VersionSelector = ({
   version,
-  onSelectVersion
+  onSelectVersion,
 }: {
   version: string | undefined
   onSelectVersion: (version: string) => void
@@ -15,7 +15,7 @@ export const VersionSelector = ({
     (e) => {
       onSelectVersion(e.currentTarget.value)
     },
-    [onSelectVersion]
+    [onSelectVersion],
   )
   useEffect(() => {
     if (version === undefined && versionList !== undefined) {
