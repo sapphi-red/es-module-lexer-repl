@@ -7,22 +7,19 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint --cache ."
+    "lint": "oxlint --type-aware"
   },
   "dependencies": {
     "autosize": "^6.0.1",
     "preact": "^10.29.7"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.5",
     "@preact/preset-vite": "^2.10.6",
     "@types/autosize": "^4.0.3",
     "es-module-lexer": "^2.3.1",
-    "eslint": "^9.39.5",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "globals": "^17.8.0",
+    "oxlint": "^1.76.0",
+    "oxlint-tsgolint": "^7.0.2001",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.65.0",
     "vite": "^8.2.0"
   },
   "packageManager": "pnpm@10.34.5"

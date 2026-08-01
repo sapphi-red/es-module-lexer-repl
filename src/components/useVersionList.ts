@@ -6,7 +6,7 @@ export const useVersionList = () => {
 
   useEffect(() => {
     const abort = new AbortController()
-    ;(async () => {
+    void (async () => {
       try {
         const res = await fetch(
           'https://data.jsdelivr.com/v1/package/npm/es-module-lexer',
@@ -14,7 +14,8 @@ export const useVersionList = () => {
             signal: abort.signal
           }
         )
-        const data: { versions: string[] } = await res.json()
+        // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+        const data = (await res.json()) as { versions: string[] }
         setVersions(
           data.versions.filter((version) => !isVersionLower(version, '0.5.0'))
         )

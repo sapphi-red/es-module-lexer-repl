@@ -1,9 +1,9 @@
 const versionRegex = /^(\d+)\.(\d+)\.(\d+)$/
 
 export const isVersionLower = (version: string, target: string) => {
-  const parsedVersion = version.match(versionRegex)
+  const parsedVersion = versionRegex.exec(version)
   if (!parsedVersion) throw new Error(`Invalid version: ${version}`)
-  const parsedTarget = target.match(versionRegex)
+  const parsedTarget = versionRegex.exec(target)
   if (!parsedTarget) throw new Error(`Invalid version: ${target}`)
 
   for (let i = 1; i < 4; i++) {

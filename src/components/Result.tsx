@@ -52,7 +52,7 @@ export const Result = ({
         </>
       ) : null}
       {result.type === 'error' ? (
-        <div class="result-error">{`${result.value}`}</div>
+        <div class="result-error">{String(result.value)}</div>
       ) : null}
     </div>
   )

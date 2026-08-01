@@ -237,23 +237,31 @@ const ResultCodeValueTooltip = ({
   return createPortal(
     <div class="tooltip" style={style}>
       <ul>
-        {value.map((v) => {
+        {value.map((v, i) => {
           const type = v.type
           switch (type) {
             case 'import-statement':
-              return <li>Import Statement (type: {v.importType})</li>
+              return <li key={i}>Import Statement (type: {v.importType})</li>
             case 'import-module-specifier':
-              return <li>Import Module Specifier: {JSON.stringify(v.value)}</li>
+              return (
+                <li key={i}>
+                  Import Module Specifier: {JSON.stringify(v.value)}
+                </li>
+              )
             case 'dynamic-import':
-              return <li>Dynamic Import Start Position</li>
+              return <li key={i}>Dynamic Import Start Position</li>
             case 'import-assertion':
-              return <li>Import Assertion Start Position</li>
+              return <li key={i}>Import Assertion Start Position</li>
             case 'export-exported-name':
-              return <li>Export Exported Name: {JSON.stringify(v.value)}</li>
+              return (
+                <li key={i}>Export Exported Name: {JSON.stringify(v.value)}</li>
+              )
             case 'export-local-name':
-              return <li>Export Local Name: {JSON.stringify(v.value)}</li>
+              return (
+                <li key={i}>Export Local Name: {JSON.stringify(v.value)}</li>
+              )
           }
-          throw new Error(`Invalid type: ${type satisfies never}`)
+          throw new Error(`Invalid type: ${String(type satisfies never)}`)
         })}
       </ul>
     </div>,

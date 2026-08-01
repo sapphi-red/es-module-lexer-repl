@@ -28,7 +28,7 @@ export const VersionSelector = ({
       <span class="version-selector-label">Version</span>
       <select class="version-selector-inner" value={version} onInput={onInput}>
         {versionList?.map((ver) => (
-          <option>{ver}</option>
+          <option key={ver}>{ver}</option>
         ))}
       </select>
     </label>

@@ -10,9 +10,10 @@ export const usePackage = (version: string) => {
     const abort = new AbortController()
     const url = `https://cdn.jsdelivr.net/npm/es-module-lexer@${version}/dist/lexer.js`
 
-    ;(async () => {
+    void (async () => {
       setEsModuleLexer(undefined)
-      const mod: typeof EsModuleLexer = await import(/* @vite-ignore */ url)
+      // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+      const mod = (await import(/* @vite-ignore */ url)) as typeof EsModuleLexer
       if (abort.signal.aborted) return
       await mod.init
       if (abort.signal.aborted) return

@@ -1,0 +1,18 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "react"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "error"
+  },
+  "ignorePatterns": ["dist/**"],
+  "rules": {
+    "no-case-declarations": "error",
+    "no-fallthrough": "error",
+    "typescript/no-misused-promises": "error",
+    "typescript/require-await": "error",
+    "typescript/restrict-plus-operands": "error",
+    "react/react-in-jsx-scope": "off",
+    "no-shadow": "off"
+  }
+}
