@@ -17,7 +17,7 @@
   "devDependencies": {
     "@preact/preset-vite": "^2.10.6",
     "@types/autosize": "^4.0.3",
-    "es-module-lexer": "^2.3.2",
+    "es-module-lexer": "^3.0.4",
     "oxfmt": "^0.76.0",
     "oxlint": "^1.91.0",
     "oxlint-tsgolint": "^7.0.2005",
